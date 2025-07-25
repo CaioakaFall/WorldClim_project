@@ -17,7 +17,7 @@ cat("Bibliotecas carregadas com sucesso!\n")
 # 2. DEFINIR DIRETÓRIOS PRINCIPAIS
 # =============================================================================
 # Ajuste conforme a sua estrutura de pastas
-dir_base <- "C:/Script_tutorial"
+dir_base <- "C:/tutorial"
 dir_bioclim <- file.path(dir_base, "bioclim") # pasta com os 19 rasters bioclimáticos
 dir_saida <- file.path(dir_base, "recortes_especies")
 dir.create(dir_saida, showWarnings = FALSE)
