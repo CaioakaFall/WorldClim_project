@@ -1,198 +1,214 @@
-# 📊 Processamento de Dados Biogeográficos
+# 📊 Processamento de Dados Biogeográficos - MCP e Variáveis Bioclimáticas
 
-Script R para processamento automatizado de dados de ocorrência de espécies e variáveis bioclimáticas, criando MCPs (Minimum Convex Polygons) e recortando rasters ambientais.
+## 📋 Descrição
 
-## 🎯 Objetivo
+Este projeto contém scripts em R para processamento de dados biogeográficos, especificamente para criar **MCPs (Minimum Convex Polygons)** para espécies e recortar variáveis bioclimáticas usando os MCPs como máscara. O script principal (`Caio_selecao.R`) automatiza todo o processo de análise espacial para múltiplas espécies.
 
-Este projeto automatiza o processamento de dados biogeográficos para análise de distribuição de espécies, incluindo:
+## 🎯 Objetivos
 
-- **Criação de MCPs** (Minimum Convex Polygons) para cada espécie
-- **Recorte de variáveis bioclimáticas** (bio1-bio19) usando os MCPs como máscara
-- **Organização automática** dos resultados em pastas estruturadas
-- **Visualização** dos pontos de ocorrência sobre biomas do Brasil
+- Criar polígonos convexos mínimos (MCPs) para cada espécie
+- Recortar 19 variáveis bioclimáticas (bio1 a bio19) usando os MCPs como máscara
+- Gerar visualizações dos pontos de ocorrência sobre biomas
+- Organizar os resultados em pastas estruturadas por espécie
 
-## 📋 Pré-requisitos
+## 📁 Estrutura do Projeto
 
-### Software Necessário
+```
+tutorial/
+├── mcpNew.R                    # Script principal
+├── ocorrencias.csv             # Dados de pontos de ocorrência
+├── bioclim/                    # Rasters bioclimáticos (bio1.tif a bio19.tif)
+│   ├── bio1.tif
+│   ├── bio2.tif
+│   └── ... (até bio19.tif)
+├── Biomas.shp                  # Shapefile dos biomas do Brasil
+├── recortes_especies/          # Pasta de saída (criada automaticamente)
+│   ├── Especie1_MCP/
+│   ├── Especie2_MCP/
+│   └── ...
+└── README.md                   # Este arquivo
+```
+
+## 🔧 Pré-requisitos
+
+### Software
 - **R** (versão 4.0 ou superior)
 - **RStudio** (recomendado)
 
-### Pacotes R
+### Pacotes R Necessários
 O script instala automaticamente os seguintes pacotes:
-- `sf` - Para dados espaciais vetoriais
-- `raster` - Para dados raster
-- `dplyr` - Para manipulação de dados
-- `sp` - Para dados espaciais
+- `sf` - Análise espacial
+- `raster` - Manipulação de rasters
+- `dplyr` - Manipulação de dados
+- `sp` - Classes e métodos para dados espaciais
+- `readxl` - Leitura de arquivos Excel
 
-## 📁 Estrutura de Arquivos
+### Dados Necessários
+1. **Arquivo CSV de ocorrências** (`ocorrencias.csv`) com colunas:
+   - `Especie`: Nome da espécie
+   - `Latitude`: Latitude (decimal, vírgula como separador)
+   - `Longitude`: Longitude (decimal, vírgula como separador)
 
-```
-projeto/
-├── script                    # Script principal R
-├── README.md                 # Este arquivo
-├── dados/                    # Pasta com dados de entrada
-│   ├── ocorrencias.csv      # Dados de ocorrência das espécies
-│   ├── Biomas.shp           # Shapefile dos biomas do Brasil
-│   └── bioclim/             # Rasters bioclimáticos
-│       ├── bio1.tif
-│       ├── bio2.tif
-│       └── ... (até bio19)
-└── resultados/              # Pasta de saída (criada automaticamente)
-    ├── especie1MCP/
-    ├── especie2MCP/
-    └── ...
-```
+2. **Rasters bioclimáticos** (19 arquivos .tif):
+   - `bio1.tif` a `bio19.tif`
+   - Formato: GeoTIFF
+   - Projeção: Compatível com os dados de ocorrência
 
-## 📊 Formato dos Dados de Entrada
-
-### Arquivo CSV de Ocorrências
-O arquivo `ocorrencias.csv` deve conter as seguintes colunas:
-
-| Coluna | Tipo | Descrição |
-|--------|------|-----------|
-| `especie` | Texto | Nome da espécie |
-| `latitude` | Numérico | Latitude em graus decimais |
-| `longitude` | Numérico | Longitude em graus decimais |
-
-**Exemplo:**
-```csv
-especie,latitude,longitude
-Araucaria_angustifolia,-25.4283,-49.2733
-Araucaria_angustifolia,-25.4167,-49.2500
-Euterpe_edulis,-23.5505,-46.6333
-```
-
-### Rasters Bioclimáticos
-- **Formato:** GeoTIFF (.tif)
-- **Nomenclatura:** `bio1.tif`, `bio2.tif`, ..., `bio19.tif`
-- **Origem:** WorldClim ou similar
-- **Resolução:** Recomendado 30 arc-seconds ou superior
-
-### Shapefile de Biomas
-- **Formato:** Shapefile (.shp)
-- **Escopo:** Biomas do Brasil
-- **Sistema de Coordenadas:** WGS84 (EPSG:4326)
+3. **Shapefile de biomas** (opcional):
+   - `Biomas.shp` e arquivos relacionados
+   - Para visualização dos pontos sobre biomas
 
 ## 🚀 Como Usar
 
 ### 1. Preparação dos Dados
-1. Organize seus dados na estrutura de pastas mostrada acima
-2. Certifique-se de que o arquivo CSV tem as colunas corretas
-3. Verifique se todos os 19 rasters bioclimáticos estão presentes
+```bash
+# Certifique-se de que os arquivos estão na estrutura correta:
+# - ocorrencias.csv na pasta raiz
+# - Rasters bioclimáticos na pasta bioclim/
+# - Shapefile de biomas na pasta raiz (opcional)
+```
 
-### 2. Configuração do Script
-Edite a linha 25 do script para apontar para seu diretório base:
-
+### 2. Execução do Script
 ```r
-dir_base <- "C:/caminho/para/seu/projeto"
+# No R ou RStudio, execute:
+source("mcpNew.R")
 ```
 
-### 3. Execução
+### 3. Configuração de Diretórios
+O script está configurado para:
+- **Diretório base**: `C:/tutorial`
+- **Rasters bioclimáticos**: `C:/tutorial/bioclim`
+- **Saída**: `C:/tutorial/recortes_especies`
+
+Para alterar os diretórios, edite as linhas 32-34 do script:
 ```r
-# No R ou RStudio
-source("script")
+dir_base <- "C:/Script_tutorial"
+dir_bioclim <- file.path(dir_base, "bioclim")
+dir_saida <- file.path(dir_base, "recortes_especies")
 ```
 
-### 4. Monitoramento
-O script fornece feedback detalhado durante a execução:
-- ✅ Carregamento de bibliotecas
-- ✅ Verificação de arquivos
-- ✅ Progresso por espécie
-- ✅ Resumo final
+## 📊 Funcionalidades
 
-## 📈 Resultados
+### 1. Carregamento e Limpeza de Dados
+- Leitura automática do arquivo CSV
+- Verificação de colunas necessárias
+- Limpeza de coordenadas (substituição de vírgulas por pontos)
+- Remoção de duplicatas
+- Arredondamento para 2 casas decimais
+- Remoção de valores ausentes
 
-### Estrutura de Saída
-Para cada espécie, uma pasta é criada com o sufixo "MCP":
+### 2. Visualização
+- Plotagem dos pontos de ocorrência sobre biomas
+- Cores diferentes para cada espécie
+- Legenda automática
+
+### 3. Criação de MCPs
+- Polígono convexo mínimo para cada espécie
+- Buffer de 10 km aplicado ao MCP
+- Transformação de projeção para compatibilidade com rasters
+
+### 4. Recorte de Rasters
+- Processamento dos 19 rasters bioclimáticos
+- Operações de crop e mask usando MCP como máscara
+- Salvamento em formato GeoTIFF
+
+### 5. Organização de Saída
+- Criação automática de pastas por espécie
+- Nomenclatura: `NomeEspecie_MCP`
+- 19 arquivos por espécie (bio1 a bio19)
+
+## 📈 Exemplo de Saída
 
 ```
-resultados/
-├── Araucaria_angustifoliaMCP/
-│   ├── bio1_Araucaria_angustifolia.tif
-│   ├── bio2_Araucaria_angustifolia.tif
+recortes_especies/
+├── Callithrix_penicillata_MCP/
+│   ├── bio1_Callithrix_penicillata.tif
+│   ├── bio2_Callithrix_penicillata.tif
+│   ├── bio3_Callithrix_penicillata.tif
 │   └── ... (até bio19)
-├── Euterpe_edulisMCP/
-│   ├── bio1_Euterpe_edulis.tif
-│   ├── bio2_Euterpe_edulis.tif
-│   └── ... (até bio19)
+├── Outra_especie_MCP/
+│   ├── bio1_Outra_especie.tif
+│   └── ...
 └── ...
 ```
-
-### Produtos Gerados
-- **MCPs** com buffer de 1km para cada espécie
-- **19 rasters recortados** por espécie (bio1-bio19)
-- **Visualização** dos pontos sobre biomas
-- **Relatório** de processamento
 
 ## ⚠️ Considerações Importantes
 
 ### Limitações
-- **Mínimo de pontos:** Espécies com menos de 30 pontos são puladas
-- **Memória:** Processamento de muitos rasters pode exigir RAM considerável
-- **Tempo:** Depende do número de espécies e resolução dos rasters
+- Espécies com menos de 3 pontos são puladas
+- Requer memória suficiente para carregar 19 rasters simultaneamente
+- Processamento pode ser lento para muitas espécies
 
-### Recomendações
-- **Backup:** Faça backup dos dados originais
-- **Teste:** Execute primeiro com um subconjunto de dados
-- **Monitoramento:** Acompanhe o uso de memória durante execução
+### Validação de Dados
+- Verificação automática de arquivos necessários
+- Diagnóstico detalhado dos dados carregados
+- Tratamento de erros com mensagens informativas
 
-## 🔧 Personalização
+### Projeções
+- Os dados de ocorrência são assumidos em CRS 4674 (SIRGAS 2000)
+- Os rasters são reprojetados automaticamente se necessário
 
-### Modificar Buffer
-Para alterar o buffer do MCP (padrão: 1km):
+## 🔍 Diagnóstico e Logs
 
-```r
-# Linha 108 - alterar o valor 1000 (metros)
-poligono_buffer <- st_buffer(poligono_convexo, dist = 2000)  # 2km
-```
+O script fornece informações detalhadas durante a execução:
+- Número de registros carregados
+- Número de espécies processadas
+- Progresso do processamento por espécie
+- Resumo final com estatísticas
 
-### Adicionar Variáveis
-Para incluir variáveis adicionais além das bioclimáticas:
+## 🛠️ Solução de Problemas
 
-```r
-# Adicionar novos rasters na lista
-lista_rasters[[20]] <- raster("nova_variavel.tif")
-```
+### Erro: "Arquivo de ocorrências não encontrado"
+- Verifique se `ocorrencias.csv` está na pasta correta
+- Confirme o nome do arquivo
 
-## 🐛 Solução de Problemas
-
-### Erro: "Arquivo não encontrado"
-- Verifique se os caminhos estão corretos
-- Confirme se os arquivos existem nas pastas especificadas
+### Erro: "Raster não encontrado"
+- Verifique se todos os arquivos bio1.tif a bio19.tif estão na pasta `bioclim/`
+- Confirme os nomes dos arquivos
 
 ### Erro: "Colunas faltantes"
-- Verifique se o CSV tem as colunas: `especie`, `latitude`, `longitude`
-- Confirme se os nomes das colunas estão escritos corretamente
+- Verifique se o CSV tem as colunas: Especie, Latitude, Longitude
+- Confirme o separador (;) e decimal (,)
 
-### Erro de Memória
-- Reduza o número de espécies processadas por vez
-- Considere usar rasters com resolução menor
+### Problemas de Memória
+- Processe menos espécies por vez
+- Feche outros programas
+- Considere usar um computador com mais RAM
 
-## 📚 Referências
+## 📝 Formato dos Dados de Entrada
 
-- **WorldClim:** [worldclim.org](https://worldclim.org/)
-- **sf package:** [r-spatial.github.io/sf/](https://r-spatial.github.io/sf/)
-- **raster package:** [cran.r-project.org/package=raster](https://cran.r-project.org/package=raster)
+### Exemplo de ocorrencias.csv:
+```csv
+Especie;Latitude;Longitude
+Callithrix penicillata;-14,26149722;-39,00139722
+Callithrix penicillata;-13,49;-39,04999722
+Outra especie;-15,862082;-47,828741
+```
 
 ## 🤝 Contribuições
 
-Contribuições são bem-vindas! Para contribuir:
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Abra um Pull Request
+Para contribuir com o projeto:
+1. Faça um fork do repositório
+2. Commit suas mudanças
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 ## 👥 Autores
 
-- **Desenvolvido para:** Análise biogeográfica de espécies
-- **Linguagem:** R
-- **Versão:** 1.0
+- Desenvolvido para análise biogeográfica
+- Script otimizado para processamento de dados de biodiversidade
+
+## 📞 Suporte
+
+Para dúvidas ou problemas:
+- Abra uma issue no GitHub
+- Verifique a seção de solução de problemas acima
+- Consulte a documentação dos pacotes R utilizados
 
 ---
 
-**⭐ Se este projeto foi útil, considere dar uma estrela no GitHub!** # projectWC
+**Última atualização**: Dezembro 2024
+**Versão**: 1.0
+**Compatibilidade**: R 4.0+
