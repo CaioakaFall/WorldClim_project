@@ -2,7 +2,7 @@
 
 ## 📋 Descrição
 
-Este projeto contém scripts em R para processamento de dados biogeográficos, especificamente para criar **MCPs (Minimum Convex Polygons)** para espécies e recortar variáveis bioclimáticas usando os MCPs como máscara. O script principal (`Caio_selecao.R`) automatiza todo o processo de análise espacial para múltiplas espécies.
+Este projeto contém scripts em R para processamento de dados biogeográficos, especificamente para criar **MCPs (Minimum Convex Polygons)** para espécies e recortar variáveis bioclimáticas usando os MCPs como máscara. O script principal (`caio_selecao.R`) automatiza todo o processo de análise espacial para múltiplas espécies.
 
 ## 🎯 Objetivos
 
