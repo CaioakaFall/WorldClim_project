@@ -197,8 +197,8 @@ Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes
 
 ## 👥 Autores
 
-- Desenvolvido para análise biogeográfica
-- Script otimizado para processamento de dados de biodiversidade
+- Caio Alexandre Barbosa
+- Universidade Federal do Espírito Santo (UFES)
 
 ## 📞 Suporte
 
@@ -206,8 +206,7 @@ Para dúvidas ou problemas:
 - Abra uma issue no GitHub
 - Verifique a seção de solução de problemas acima
 - Consulte a documentação dos pacotes R utilizados
-
----
+- Entre em contato: [caio.alexandre01@gmail.com]
 
 **Última atualização**: Dezembro 2024
 **Versão**: 1.0
