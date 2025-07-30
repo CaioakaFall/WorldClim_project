@@ -182,31 +182,29 @@ O script fornece logs detalhados:
 - **Pantanal:** `pantanal.gpkg`
 - **Brasil:** `BR.gpkg`
 
-## 🤝 Contribuição
+## 🤝 Contribuições
 
 Para contribuir com o projeto:
-
 1. Faça um fork do repositório
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Abra um Pull Request
+2. Commit suas mudanças
 
 ## 📄 Licença
 
-Este projeto está sob a licença [ESPECIFICAR_LICENÇA].
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 ## 👥 Autores
 
-- [Seu Nome]
-- [Instituição]
+- Caio Alexandre Barbosa
+- Universidade Federal do Espírito Santo (UFES)
 
 ## 📞 Suporte
 
 Para dúvidas ou problemas:
 - Abra uma issue no GitHub
-- Entre em contato: [seu_email@exemplo.com]
+- Verifique a seção de solução de problemas acima
+- Consulte a documentação dos pacotes R utilizados
+- Entre em contato: [caio.alexandre01@gmail.com]
 
----
-
-**Última atualização:** [DATA]
-**Versão:** 1.0.0
+**Última atualização**: Dezembro 2024
+**Versão**: 1.0
+**Compatibilidade**: R 4.0+
