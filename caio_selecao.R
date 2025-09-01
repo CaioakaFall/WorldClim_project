@@ -183,7 +183,7 @@ for(especie_atual in especies) {
   # Criar polígono convexo mínimo
   poligono_convexo <- st_convex_hull(pontos_unidos)
   
-  # Aplicar buffer de 10 km 
+  # Aplicar buffer de 200 km 
   poligono_buffer <- st_buffer(poligono_convexo, dist = 200000)
   
   # Verificar e ajustar projeção para igualar ao raster
@@ -241,4 +241,5 @@ cat("- Diretório de saída:", dir_saida, "\n")
 cat("\nCada pasta contém os 19 rasters bioclimáticos recortados\n")
 cat("usando o MCP (Minimum Convex Polygon) da respectiva espécie.\n")
 cat(rep("=", 60), "\n")
+
 
