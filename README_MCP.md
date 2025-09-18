@@ -15,7 +15,7 @@ Este projeto contém scripts em R para processamento de dados biogeográficos, e
 
 ```
 tutorial/
-├── mcpNew.R                    # Script principal
+├── caio_selecao.R                    # Script principal
 ├── ocorrencias.csv             # Dados de pontos de ocorrência
 ├── bioclim/                    # Rasters bioclimáticos (bio1.tif a bio19.tif)
 │   ├── bio1.tif
@@ -26,7 +26,7 @@ tutorial/
 │   ├── Especie1_MCP/
 │   ├── Especie2_MCP/
 │   └── ...
-└── README.md                   # Este arquivo
+└── README_MCP.md                   # Este arquivo
 ```
 
 ## 🔧 Pré-requisitos
@@ -71,7 +71,7 @@ O script instala automaticamente os seguintes pacotes:
 ### 2. Execução do Script
 ```r
 # No R ou RStudio, execute:
-source("mcpNew.R")
+source("caio_selecao.R")
 ```
 
 ### 3. Configuração de Diretórios
@@ -82,7 +82,7 @@ O script está configurado para:
 
 Para alterar os diretórios, edite as linhas 32-34 do script:
 ```r
-dir_base <- "C:/Script_tutorial"
+dir_base <- "C:/tutorial"
 dir_bioclim <- file.path(dir_base, "bioclim")
 dir_saida <- file.path(dir_base, "recortes_especies")
 ```
@@ -104,7 +104,7 @@ dir_saida <- file.path(dir_base, "recortes_especies")
 
 ### 3. Criação de MCPs
 - Polígono convexo mínimo para cada espécie
-- Buffer de 10 km aplicado ao MCP
+- Buffer de 200 km aplicado ao MCP
 - Transformação de projeção para compatibilidade com rasters
 
 ### 4. Recorte de Rasters
