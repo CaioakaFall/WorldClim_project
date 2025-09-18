@@ -14,7 +14,7 @@ Este projeto automatiza o processo de recorte e mascaramento de rasters (.tif) u
 ## 📁 Estrutura do Projeto
 
 ```
-CM/
+cropmask/
 ├── camadas/           # Rasters de entrada (.tif)
 │   ├── wc2.1_30s_bio_1.tif
 │   ├── wc2.1_30s_bio_2.tif
@@ -31,7 +31,7 @@ CM/
 │   ├── wc2.1_30s_bio_1_amazonia_masked.tif
 │   ├── wc2.1_30s_bio_1_cerrado_masked.tif
 │   └── ...
-├── funfando.R       # Script principal
+├── caio_cropmask.R       # Script principal
 └── README_CM.md     # Este arquivo
 ```
 
@@ -56,7 +56,7 @@ install.packages("sf")
 1. **Clone o repositório:**
    ```bash
    git clone [URL_DO_REPOSITORIO]
-   cd CM
+   cd cropmask
    ```
 
 2. **Instale as bibliotecas R:**
@@ -76,12 +76,12 @@ install.packages("sf")
 
 1. **Abra o RStudio e carregue o script:**
    ```r
-   source("funfando.R")
+   source("cropmask.R")
    ```
 
 2. **Ou execute diretamente:**
    ```r
-   Rscript funfando.R
+   Rscript cropmask.R
    ```
 
 ### Configuração dos Caminhos
@@ -90,9 +90,9 @@ O script está configurado para usar a estrutura de pastas `C:/CM/`. Se necessá
 
 ```r
 # Caminhos para as pastas
-bio_folder <- "C:/CM/camadas/"
-vetores_folder <- "C:/CM/vetores/"
-resultados_folder <- "C:/CM/resultados/"
+bio_folder <- "C:/cropmask/camadas/"
+vetores_folder <- "C:/cropmask/vetores/"
+resultados_folder <- "C:/cropmask/resultados/"
 ```
 
 ## 📊 Funcionalidades
