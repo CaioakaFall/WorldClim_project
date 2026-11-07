@@ -1,9 +1,15 @@
-# Analise de artefatos espaciais em variaveis bioclimaticas - WorldClim 2.1
+# =============================================================================
+# SCRIPT - ANÁLISE DE ARTEFATOS ESPACIAIS EM VARIÁVEIS BIOCLIMÁTICAS
+# =============================================================================
 # Autor: Caio Alexandre Barbosa
+# Objetivo: Detectar e quantificar descontinuidades e platôs espaciais nas
+# variáveis bioclimáticas do WorldClim 2.1 nos seis biomas brasileiros.
+# =============================================================================
 
-# Configuracao
+# 1. CONFIGURAÇÃO E BIBLIOTECAS
+# =============================================================================
 
-if (!requireNamespace("terra", quietly=TRUE)) {
+if (!requireNamespace("terra", quietly = TRUE)) {
   stop("Instale o pacote terra: install.packages('terra')")
 }
 suppressPackageStartupMessages(library(terra))
