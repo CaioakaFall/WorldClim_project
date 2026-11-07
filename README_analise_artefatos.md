@@ -2,7 +2,7 @@
 
 ## 📋 Descrição
 
-Este projeto automatiza a identificação e a quantificação de **possíveis artefatos espaciais** em oito variáveis bioclimáticas do WorldClim 2.1, considerando os seis biomas terrestres brasileiros. O script `ANALISE_ARTEFATOS_WORLDCLIM.R` processa rasters regionais, produz máscaras de detecção, mapas e tabelas de áreas e percentuais.
+Este projeto automatiza a identificação e a quantificação de **possíveis artefatos espaciais** em oito variáveis bioclimáticas do WorldClim 2.1, considerando os seis biomas terrestres brasileiros. O script `analise_artefatos.R` processa rasters regionais, produz máscaras de detecção, mapas e tabelas de áreas e percentuais.
 
 São examinados dois padrões: **descontinuidades espaciais**, identificadas pelo procedimento C4, e **platôs espaciais**, identificados pelo procedimento V7. As detecções são candidatas a anomalias e requerem interpretação e validação científica; não demonstram, isoladamente, erros nos dados climáticos.
 
@@ -61,7 +61,7 @@ O pacote `terra` é obrigatório. O pacote `writexl` é necessário quando `expo
 
 ## 📦 Instalação
 
-1. Salve `ANALISE_ARTEFATOS_WORLDCLIM.R` em uma pasta de sua preferência.
+1. Salve `analise_artefatos.R` em uma pasta de sua preferência.
 2. Instale os pacotes R necessários.
 3. Coloque os rasters regionais `.tif` em `C:/dados/bioclim/`.
 4. Se desejar excluir massas d'água, coloque o arquivo vetorial em `C:/dados/rios/massas_dagua_maior_20km2.gpkg`.
@@ -74,13 +74,13 @@ O pacote `terra` é obrigatório. O pacote `writexl` é necessário quando `expo
 No RStudio ou console do R:
 
 ```r
-source("ANALISE_ARTEFATOS_WORLDCLIM.R")
+source("analise_artefatos.R")
 ```
 
 Ou no terminal, a partir da pasta onde está o arquivo:
 
 ```bash
-Rscript ANALISE_ARTEFATOS_WORLDCLIM.R
+Rscript analise_artefatos.R
 ```
 
 ### Configuração dos caminhos
